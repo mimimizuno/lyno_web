@@ -1,26 +1,23 @@
+/* app/globals.css (Tailwind v4) */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* デザイントークン（v4は @theme で定義） */
+@theme {
+  --color-base: #0B0B0B;
+  --color-text: #EAEAEA;
+  --color-brand: #00552e;
+  --color-mute: #141414;
+
+  --radius-2xl: 1rem;
+  --shadow-soft: 0 10px 40px rgba(0,0,0,0.4);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ここからユーティリティ適用 */
+:root { color-scheme: dark; }
+html, body { @apply bg-base text-text antialiased; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+.section { @apply max-w-screen-xl mx-auto px-5; }
+.h1 { @apply text-4xl md:text-6xl font-extrabold tracking-tight; }
+.h2 { @apply text-2xl md:text-3xl font-semibold; }
+.btn { @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-brand text-base font-semibold; }
+.card { @apply rounded-2xl border border-white/10 bg-mute/60 backdrop-blur-sm; }
