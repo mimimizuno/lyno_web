@@ -3,6 +3,7 @@ import About from "@/components/About";
 import MenuCards from "@/components/MenuCards";
 import Services from "@/components/Services";
 import Gallery from "@/components/Gallery";
+import ClosingVisual from "@/components/ClosingVisual";
 import ContactFooter from "@/components/ContactFooter";
 
 export default function Page() {
@@ -13,6 +14,7 @@ export default function Page() {
       <MenuCards />
       <Services />
       <Gallery />
+      <ClosingVisual />
       <ContactFooter />
     </main>
   );
