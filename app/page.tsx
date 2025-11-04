@@ -1,15 +1,21 @@
 import Hero from "@/components/Hero";
-import Schedule from "@/components/Schedule";
-import NewsList from "@/components/NewsList";
+import About from "@/components/About";
+import MenuCards from "@/components/MenuCards";
+import Services from "@/components/Services";
 import Gallery from "@/components/Gallery";
+import ClosingVisual from "@/components/ClosingVisual";
+import ContactFooter from "@/components/ContactFooter";
 
 export default function Page() {
   return (
-    <main className="space-y-8 md:space-y-12">
+    <main className="space-y-20 md:space-y-32">
       <Hero />
+      <About />
+      <MenuCards />
+      <Services />
       <Gallery />
-      <Schedule />
-      <NewsList />
+      <ClosingVisual />
+      <ContactFooter />
     </main>
   );
 }
