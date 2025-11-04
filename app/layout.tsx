@@ -1,4 +1,5 @@
 import "./globals.css";
+import Header from "@/components/Header";
 import { Playfair_Display, Noto_Sans_JP } from "next/font/google";
 
 const playfair = Playfair_Display({
@@ -21,7 +22,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className={`${playfair.variable} ${noto.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
