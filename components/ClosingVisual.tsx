@@ -8,7 +8,7 @@ export default function ClosingVisual() {
     <section className="relative h-[80svh] min-h-[480px] overflow-hidden">
       {/* 背景写真 */}
       <Image
-        src="/images/gallery/lyno_outside.jpg"
+        src="/images/gallery/specialty.jpg"
         alt="LYNO COFFEE"
         fill
         priority
