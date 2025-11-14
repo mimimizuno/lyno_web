@@ -1,67 +1,64 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+
+const LINKS = [
+  { href: "#about", label: "About" },
+  { href: "#menu", label: "Menu" },
+  { href: "#beans", label: "Beans" },
+  { href: "#news", label: "News" },
+  { href: "#access", label: "Access" },
+];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-base/70 backdrop-blur-md border-b border-white/10">
-      <div className="flex items-center justify-between px-6 md:px-10 h-16">
-        {/* ロゴ */}
-        <Link href="/" className="font-serif text-2xl text-white tracking-wide">
-          L Y N O
-        </Link>
+    <header className="fixed inset-x-0 top-0 z-40">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3
+                      bg-black/60 backdrop-blur border-b border-white/5">
+        <div className="font-serif text-lg tracking-wide">
+          <span className="text-brand">Lyno</span>
+        </div>
 
-        {/* ハンバーガーアイコン */}
+        {/* PC nav */}
+        <nav className="hidden md:flex gap-8 text-sm text-white/80">
+          {LINKS.map((l) => (
+            <a key={l.href} href={l.href} className="hover:text-white">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Hamburger */}
         <button
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle Menu"
-          className="relative w-7 h-5 flex flex-col justify-between group"
+          className="md:hidden relative w-8 h-8 flex items-center justify-center"
+          onClick={() => setOpen((v) => !v)}
         >
-          <span
-            className={`h-[2px] w-full bg-white rounded transition-all duration-300 ${
-              open ? "rotate-45 translate-y-[9px]" : ""
-            }`}
-          />
-          <span
-            className={`h-[2px] w-full bg-white rounded transition-opacity duration-300 ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`h-[2px] w-full bg-white rounded transition-all duration-300 ${
-              open ? "-rotate-45 -translate-y-[9px]" : ""
-            }`}
-          />
+          <span className="block h-px w-6 bg-white transition
+                           before:block before:h-px before:w-6 before:bg-white
+                           before:relative before:-translate-y-2
+                           after:block after:h-px after:w-6 after:bg-white
+                           after:relative after:translate-y-2" />
         </button>
       </div>
 
-      {/* フルスクリーンメニュー */}
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 bg-brand/95 backdrop-blur-sm flex flex-col items-center justify-center space-y-8 text-white font-sans text-lg tracking-wide"
-          >
-            {["About", "Menu", "Gallery", "Contact"].map((item) => (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase()}`}
+      {/* Mobile menu */}
+      {open && (
+        <nav className="md:hidden bg-black/90 backdrop-blur border-b border-white/10">
+          <div className="mx-auto max-w-5xl px-4 py-4 space-y-3">
+            {LINKS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
                 onClick={() => setOpen(false)}
-                className="hover:text-brand-light transition-colors duration-200"
+                className="block text-sm text-white/80"
               >
-                {item}
-              </Link>
+                {l.label}
+              </a>
             ))}
-          </motion.nav>
-        )}
-      </AnimatePresence>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
