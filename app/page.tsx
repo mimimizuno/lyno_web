@@ -1,21 +1,25 @@
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import MenuCards from "@/components/MenuCards";
-import Services from "@/components/Services";
-import Gallery from "@/components/Gallery";
-import ClosingVisual from "@/components/ClosingVisual";
-import ContactFooter from "@/components/ContactFooter";
+import Header from "@/components/Header";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Menu from "@/components/sections/Menu";
+import Beans from "@/components/sections/Beans";
+import News from "@/components/sections/News";
+import Access from "@/components/sections/Access";
+import Footer from "@/components/Footer";
 
 export default function Page() {
   return (
-    <main className="space-y-20 md:space-y-32">
-      <Hero />
-      <About />
-      <MenuCards />
-      <Services />
-      <Gallery />
-      <ClosingVisual />
-      <ContactFooter />
-    </main>
+    <>
+      <Header />
+      <main className="pt-16 space-y-24 md:space-y-32">
+        <Hero />
+        <About />
+        <Menu />
+        <Beans />
+        <News />
+        <Access />
+      </main>
+      <Footer />
+    </>
   );
 }
