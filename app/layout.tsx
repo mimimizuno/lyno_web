@@ -1,29 +1,60 @@
 import "./globals.css";
-import Header from "@/components/Header";
-import { Playfair_Display, Noto_Sans_JP } from "next/font/google";
+import type { Metadata } from "next";
+import { Noto_Sans_JP } from "next/font/google";
+import { Sawarabi_Mincho } from "next/font/google";
+import { Oswald } from "next/font/google";
+import { Libre_Baskerville } from "next/font/google";
 
-const playfair = Playfair_Display({
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
+  display: "swap",
+});
+
+const libre = Libre_Baskerville({
   subsets: ["latin"],
   weight: ["400", "700"],
-  variable: "--font-playfair",
+  variable: "--font-libre-baskerville",
+  display: "swap",
 });
 
-const noto = Noto_Sans_JP({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-noto",
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
+  display: "swap",
+  preload: false,
 });
 
-export const metadata = {
-  title: "LYNO CAFE",
-  description: "light your new ordinary",
+const sawarabiMincho = Sawarabi_Mincho({
+  variable: "--font-sawarabi-mincho",
+  weight: "400",
+  display: "swap",
+  preload: false,
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "Lyno | Specialty Coffee in Kojiya",
+    template: "%s | Lyno",
+  },
+  description: "Specialty coffee stand near Kojiya Station.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="ja" className={`${playfair.variable} ${noto.variable}`}>
-      <body>
-        <Header />
+    <html
+      lang="ja"
+      className={[
+        oswald.variable,
+        libre.variable,
+        notoSansJP.variable,
+        sawarabiMincho.variable,
+      ].join(" ")}
+    >
+      <body className="font-body bg-base text-white antialiased">
         {children}
       </body>
     </html>
