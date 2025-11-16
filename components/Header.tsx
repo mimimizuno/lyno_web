@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { texts } from "@/lib/text";
+import { drawerMotion, overlayMotion } from "@/lib/motion"; // ★ 追加
 
 type MenuItem = { href: `#${string}`; label: keyof typeof texts.header };
 
@@ -92,9 +93,10 @@ export default function Header() {
             <motion.div
               aria-hidden
               className="header-overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              variants={overlayMotion}
+              initial="closed"
+              animate="open"
+              exit="closed"
               onClick={close}
             />
 
@@ -104,12 +106,11 @@ export default function Header() {
               role="dialog"
               aria-modal="true"
               className="header-drawer"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
+              variants={drawerMotion}
+              initial="closed"
+              animate="open"
+              exit="closed"
             >
-              {/* 上部：タイトル＋✕ボタン */}
               <div className="header-drawer-top">
                 <motion.button
                   type="button"
