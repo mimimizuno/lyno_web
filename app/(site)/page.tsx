@@ -14,9 +14,9 @@ export default function Page() {
       <main className="pt-16 space-y-24 md:space-y-32">
         <Hero />
         <About />
+        <News />
         <Menu />
         <Beans />
-        <News />
         <Access />
       </main>
       <Footer />
