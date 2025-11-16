@@ -1,64 +1,144 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { texts } from "@/lib/text";
 
-const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#menu", label: "Menu" },
-  { href: "#beans", label: "Beans" },
-  { href: "#news", label: "News" },
-  { href: "#access", label: "Access" },
+type MenuItem = { href: `#${string}`; label: keyof typeof texts.header };
+
+const LINKS: MenuItem[] = [
+  { href: "#about", label: "about" },
+  { href: "#menu", label: "menu" },
+  { href: "#beans", label: "beans" },
+  { href: "#news", label: "news" },
+  { href: "#access", label: "access" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const t = texts.header;
+
+  // ドロワーオープン中はスクロールロック
+  useEffect(() => {
+    const root = document.documentElement;
+    const prev = root.style.overflow;
+    root.style.overflow = open ? "hidden" : prev || "";
+    return () => {
+      root.style.overflow = prev || "";
+    };
+  }, [open]);
+
+  // Esc で閉じる
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const toggle = () => setOpen((v) => !v);
+  const close = () => setOpen(false);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-40">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3
-                      bg-black/60 backdrop-blur border-b border-white/5">
-        <div className="font-serif text-lg tracking-wide">
-          <span className="text-brand">Lyno</span>
-        </div>
+    <header className="header-shell">
+      <div className="header-inner">
+        <div className="header-container">
+          {/* Brand */}
+          <Link href="#hero" className="brand-root">
+            <div className="brand-logo-wrapper">
+              <Image
+                src="/images/ui/icon_transparent.png"
+                alt="Lyno Coffee"
+                width={56}
+                height={56}
+                className="brand-logo-image"
+              />
+            </div>
+            <span className="brand-text">{texts.common.brand}</span>
+          </Link>
 
-        {/* PC nav */}
-        <nav className="hidden md:flex gap-8 text-sm text-white/80">
-          {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-white">
-              {l.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Hamburger */}
-        <button
-          className="md:hidden relative w-8 h-8 flex items-center justify-center"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="block h-px w-6 bg-white transition
-                           before:block before:h-px before:w-6 before:bg-white
-                           before:relative before:-translate-y-2
-                           after:block after:h-px after:w-6 after:bg-white
-                           after:relative after:translate-y-2" />
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {open && (
-        <nav className="md:hidden bg-black/90 backdrop-blur border-b border-white/10">
-          <div className="mx-auto max-w-5xl px-4 py-4 space-y-3">
-            {LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="block text-sm text-white/80"
-              >
-                {l.label}
+          {/* PC nav */}
+          <nav className="nav-desktop">
+            {LINKS.map((item) => (
+              <a key={item.href} href={item.href} className="nav-link">
+                {t[item.label]}
               </a>
             ))}
-          </div>
-        </nav>
-      )}
+          </nav>
+
+          {/* SP: ハンバーガー（開く専用） */}
+          <button
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={toggle}
+            className="hamburger"
+          >
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+          </button>
+        </div>
+      </div>
+
+      {/* ドロワー（オーバーレイ＋パネル） */}
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* オーバーレイ：全画面、タップで閉じる */}
+            <motion.div
+              aria-hidden
+              className="header-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={close}
+            />
+
+            {/* 右 2/3 ドロワー本体 */}
+            <motion.aside
+              id="header-drawer"
+              role="dialog"
+              aria-modal="true"
+              className="header-drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
+            >
+              {/* 上部：タイトル＋✕ボタン */}
+              <div className="header-drawer-top">
+                <motion.button
+                  type="button"
+                  onClick={close}
+                  className="drawer-close"
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <span />
+                  <span />
+                </motion.button>
+              </div>
+
+              {/* メニューリンク */}
+              <nav className="header-drawer-inner">
+                {LINKS.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={close}
+                    className="header-drawer-link"
+                  >
+                    {t[item.label]}
+                  </a>
+                ))}
+              </nav>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

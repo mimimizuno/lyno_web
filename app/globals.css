@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* -----------------------------
-   THEME（Tailwind v4 方式）
+   THEME
 -------------------------------- */
 @theme {
   /* COLORS */
@@ -115,5 +115,98 @@
   }
   .btn:hover {
     opacity: 0.85;
+  }
+
+  /* ==== Header 基本レイアウト ==== */
+  .header-shell {
+    @apply fixed inset-x-0 top-0 z-[50];
+  }
+
+  .header-inner {
+    @apply w-full bg-black/60 backdrop-blur border-b border-white/5;
+  }
+
+  .header-container {
+    @apply mx-auto w-full max-w-6xl flex items-center justify-between px-4 py-3;
+  }
+
+  .brand-root {
+    @apply flex items-center gap-3;
+  }
+
+  .brand-logo-wrapper {
+    @apply flex h-14 w-14 items-center justify-center rounded-full bg-white/5;
+  }
+
+  .brand-logo-image {
+    @apply h-10 w-10 object-contain;
+  }
+
+  .brand-text {
+    @apply text-xl font-heading tracking-wide text-white;
+  }
+
+  .nav-desktop {
+    @apply hidden md:flex gap-8 text-sm text-white/80;
+  }
+
+  .nav-link {
+    @apply hover:text-white transition-colors;
+  }
+
+  /* ==== ハンバーガー（開くボタン） ==== */
+  .hamburger {
+    @apply md:hidden flex flex-col items-center justify-center gap-1
+           w-10 h-10 p-0 text-white;
+  }
+
+  .hamburger-line {
+    @apply block h-0.5 w-6 bg-white rounded-full;
+  }
+
+  /* ==== ドロワー＆オーバーレイ（ヘッダーより上のレイヤー） ==== */
+
+  /* 全画面オーバーレイ */
+  .header-overlay {
+    @apply fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] md:hidden;
+  }
+
+  /* 右 2/3 ドロワー */
+  .header-drawer {
+    @apply fixed inset-y-0 right-0 w-2/3 bg-black/95 text-white
+           z-[70] md:hidden flex flex-col;
+  }
+
+  .header-drawer-top {
+    @apply flex items-center justify-end px-6 pt-5 pb-3 border-b border-white/10;
+  }
+
+  .header-drawer-title {
+    @apply text-sm tracking-[0.2em] uppercase text-white/60;
+  }
+
+  /* ✕ボタン */
+  .drawer-close {
+    @apply relative w-8 h-8 flex items-center justify-center;
+  }
+
+  .drawer-close span {
+    @apply absolute block h-0.5 w-5 bg-white rounded-full;
+  }
+
+  .drawer-close span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .drawer-close span:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .header-drawer-inner {
+    @apply mt-4 px-6 py-4 flex flex-col gap-4;
+  }
+
+  .header-drawer-link {
+    @apply text-lg tracking-wide text-white/80 hover:text-white transition-colors;
   }
 }

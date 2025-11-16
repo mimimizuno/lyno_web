@@ -1,16 +1,15 @@
 export const texts = {
     common: {
-      brand: "Lyno Coffee",
+      brand: "Lyno",
       tagline: "糀谷の日常に寄り添うスペシャルティコーヒー",
     },
   
     header: {
-      navHome: "ホーム",
-      navAbout: "Lynoについて",
-      navMenu: "メニュー",
-      navBeans: "豆の紹介",
-      navNews: "ニュース",
-      navAccess: "アクセス",
+      about: "About",
+      menu: "Menu",
+      beans: "Beans",
+      news: "News",
+      access: "Access",
     },
   
     hero: {
