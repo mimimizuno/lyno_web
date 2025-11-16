@@ -117,6 +117,24 @@
     opacity: 0.85;
   }
 
+  /* 左だけ微小スぺース */
+  .tracking-left-sm::before {
+    content: "";
+    margin-right: 0.15em;
+  }
+
+  /* 左だけ中 */
+  .tracking-left::before {
+    content: "";
+    margin-right: 0.25em;
+  }
+
+  /* 左だけ大 */
+  .tracking-left-lg::before {
+    content: "";
+    margin-right: 0.3em;
+  }
+
   /* ==== Header 基本レイアウト ==== */
   .header-shell {
     @apply fixed inset-x-0 top-0 z-[50];

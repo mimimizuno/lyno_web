@@ -1,6 +1,6 @@
 export const texts = {
     common: {
-      brand: "Lyno",
+      brand: "LYNO",
       tagline: "糀谷の日常に寄り添うスペシャルティコーヒー",
     },
   
@@ -13,11 +13,9 @@ export const texts = {
     },
   
     hero: {
-      title: "糀谷の日常に寄り添うスペシャルティコーヒー",
-      subtitle:
-        "駅から徒歩2分。通勤の前後や休日に、静かに気持ちを整える一杯を。",
-      ctaPrimary: "メニューを見る",
-      ctaSecondary: "アクセスを見る",
+        tagline: "Light Your New Ordinary",
+        title: "LYNO",
+        subtitle: "コーヒーが灯す、日常のひととき",
     },
   
     about: {
