@@ -1,51 +1,51 @@
 "use client";
+
 import { motion } from "framer-motion";
+import { slideFromLeft } from "@/lib/motion";
+import { texts } from "@/lib/text";
 
 export default function Hero() {
+  const t = texts.hero;
+
   return (
     <section
-      className="relative h-[70vh] min-h-[480px] flex items-center justify-center"
-      id="top"
+      id="hero"
+      className="relative h-[70vh] min-h-[480px] flex items-center"
     >
-      {/* 背景画像 or 動画 */}
+      {/* 背景 */}
       <div className="absolute inset-0">
         <img
           src="/images/hero/Hero.jpg"
-          alt=""
+          alt="Hero Image"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      {/* テキスト */}
       <motion.div
-        className="relative z-10 text-center px-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 w-full max-w-screen-xl mx-auto px-6 
+                   flex justify-end"
+        variants={slideFromLeft(0.1)}
+        initial="hidden"
+        animate="show"
       >
-        <p className="text-xs tracking-[0.3em] uppercase text-white/60">
-          Specialty Coffee Stand
-        </p>
-        <h1 className="mt-4 text-3xl md:text-5xl font-serif">
-          Your Daily Specialty.
-        </h1>
-        <p className="mt-4 text-sm md:text-base text-white/70 max-w-lg mx-auto">
-          糀谷の日常に寄り添う、静かで上質な一杯を。
-        </p>
-        <div className="mt-8 flex justify-center gap-4">
-          <a
-            href="#menu"
-            className="px-5 py-2 rounded-full border border-brand text-sm
-                       hover:bg-brand hover:text-black transition"
+        <div className="text-right max-w-md">
+          <p className="text-xs md:text-sm lg:text-lg tracking-[0.3em] text-white/70">
+            {t.tagline}
+          </p>
+
+          <h1
+            className="
+              mt-3 text-7xl md:text-8xl lg:text-9xl 
+              tracking- font-sans
+            "
           >
-            View Menu
-          </a>
-          <a
-            href="#access"
-            className="px-5 py-2 rounded-full text-sm text-white/70 hover:text-white"
-          >
-            Visit Lyno
-          </a>
+            {t.title}
+          </h1>
+
+          <p className="mt-3 text-xs md:text-sm lg:text-lg text-white/70">
+            {t.subtitle}
+          </p>
         </div>
       </motion.div>
     </section>

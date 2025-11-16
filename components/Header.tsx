@@ -50,15 +50,15 @@ export default function Header() {
         <div className="header-container">
           {/* Brand */}
           <Link href="#hero" className="brand-root">
-            <div className="brand-logo-wrapper">
+            {/* <div className="brand-logo-wrapper">
               <Image
-                src="/images/ui/icon_transparent.png"
+                src="/images/ui/icon.png"
                 alt="Lyno Coffee"
                 width={56}
                 height={56}
                 className="brand-logo-image"
               />
-            </div>
+            </div> */}
             <span className="brand-text">{texts.common.brand}</span>
           </Link>
 
