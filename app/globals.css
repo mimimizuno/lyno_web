@@ -5,8 +5,8 @@
 -------------------------------- */
 @theme {
   /* COLORS */
-  --color-base: #050505;
-  --color-brand: #0b3d2e;
+  --color-bg: #050505;
+  --color-brand: #03402d;
   --color-accent: #d9d9d9;
 
   /* TYPOGRAPHY */
@@ -38,7 +38,7 @@
   }
 
   body {
-    background: var(--color-base);
+    background: var(--color-bg);
     color: white;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
@@ -49,6 +49,9 @@
    UTILITIES
 -------------------------------- */
 @layer utilities {
+  .p {
+    @apply text-sm md:text-base text-white/70 leading-relaxed;
+  }
   .h1 {
     font-family: var(--font-heading);
     font-size: var(--text-h1);
@@ -115,24 +118,6 @@
   }
   .btn:hover {
     opacity: 0.85;
-  }
-
-  /* 左だけ微小スぺース */
-  .tracking-left-sm::before {
-    content: "";
-    margin-right: 0.15em;
-  }
-
-  /* 左だけ中 */
-  .tracking-left::before {
-    content: "";
-    margin-right: 0.25em;
-  }
-
-  /* 左だけ大 */
-  .tracking-left-lg::before {
-    content: "";
-    margin-right: 0.3em;
   }
 
   /* ==== Header 基本レイアウト ==== */

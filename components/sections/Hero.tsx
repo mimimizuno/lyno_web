@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { slideFromLeft } from "@/lib/motion";
+import { fadeIn } from "@/lib/motion";
 import { texts } from "@/lib/text";
 
 export default function Hero() {
@@ -25,7 +25,7 @@ export default function Hero() {
       <motion.div
         className="relative z-10 w-full max-w-screen-xl mx-auto px-6 
                    flex justify-end"
-        variants={slideFromLeft(0.1)}
+        variants={fadeIn(0.1)}
         initial="hidden"
         animate="show"
       >
@@ -35,15 +35,12 @@ export default function Hero() {
           </p>
 
           <h1
-            className="
-              mt-3 text-7xl md:text-8xl lg:text-9xl 
-              tracking- font-sans
-            "
+            className="text-7xl md:text-8xl lg:text-9xl font-sans"
           >
             {t.title}
           </h1>
 
-          <p className="mt-3 text-xs md:text-sm lg:text-lg text-white/70">
+          <p className="mt-1 text-xs md:text-sm lg:text-lg text-white/70">
             {t.subtitle}
           </p>
         </div>
