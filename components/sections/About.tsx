@@ -17,7 +17,7 @@ export default function About() {
         <div className="md:w-1/2">
           <div className="overflow-hidden rounded-3xl border border-white/10">
             <img
-              src="/images/gallery/Lyno_inside.jpg"
+              src="/images/shop/Lyno_inside.jpg"
               alt="Lyno interior"
               className="h-full w-full object-cover"
             />
