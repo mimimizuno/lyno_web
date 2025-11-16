@@ -10,7 +10,7 @@ export default function Hero() {
       {/* 背景画像 or 動画 */}
       <div className="absolute inset-0">
         <img
-          src="/images/gallery/Hero.jpg"
+          src="/images/hero/Hero.jpg"
           alt=""
           className="h-full w-full object-cover"
         />
