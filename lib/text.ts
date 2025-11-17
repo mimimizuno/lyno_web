@@ -70,9 +70,7 @@ export const texts = {
     },
   
     footer: {
-      rights: "© 2025 Lyno Coffee.",
-      contact: "お問い合わせ",
-      policy: "利用規約",
-      instagram: "Instagram",
+      brand: "LYNO CAFE TOKYO",
+      copyright: "©",
     },
   } as const;
