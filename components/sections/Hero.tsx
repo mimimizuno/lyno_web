@@ -28,6 +28,7 @@ export default function Hero() {
         variants={fadeIn(0.1)}
         initial="hidden"
         animate="show"
+        viewport={{ once: true, amount: 0.3 }}
       >
         <div className="text-right max-w-md">
           <p className="text-xs md:text-sm lg:text-lg tracking-[0.3em] text-white/70">

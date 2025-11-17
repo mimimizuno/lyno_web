@@ -32,14 +32,14 @@ export const texts = {
       },
   
     menu: {
-      heading: "メニュー",
-      subheading: "日常に寄り添う定番の一杯から、季節限定メニューまで。",
-      dripTitle: "ハンドドリップ",
-      dripDesc: "豆ごとのレシピで、一杯ずつ丁寧に抽出します。",
-      latteTitle: "カフェラテ",
-      latteDesc: "エスプレッソとミルクの甘さをバランスよく。",
-      otherTitle: "ソフトドリンク",
-      otherDesc: "自家製シロップを使ったドリンクなど。",
+        title: "Menu",
+        description: "テイクアウト中心で、日常使いしやすいメニューをご用意しています。ドリップは豆をお選びいただけます。シロップは人工甘味料不使用でサトウキビ由来のシロップを用いております。",
+        seasonal: "Seasonal",
+        coffee: "Coffee",
+        teaLatte: "Tea Latte",
+        others: "Others",
+        option: "Option",
+        ask: "Ask",
     },
   
     beans: {
