@@ -69,7 +69,7 @@ export default function MenuClient({ items }: Props) {
           variants={fadeIn(0.1)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.8 }}
         >
           {t.title}
         </motion.h2>
