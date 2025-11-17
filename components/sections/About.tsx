@@ -15,6 +15,7 @@ export default function About() {
             variants={fadeIn(0.1)}
             initial="hidden"
             animate="show"
+            viewport={{ once: true, amount: 0.3 }}
           >
             {t.title}
           </motion.h2>

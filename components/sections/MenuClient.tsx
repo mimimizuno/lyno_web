@@ -64,8 +64,6 @@ export default function MenuClient({ items }: Props) {
   return (
     <section id="menu" className="section section-y">
       <div className="mx-auto max-w-5xl px-6">
-
-        {/* タイトル（motion） */}
         <motion.h2
           className="h2 mb-3"
           variants={fadeIn(0.1)}
