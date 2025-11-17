@@ -1,4 +1,4 @@
-import { getMenu } from "@/lib/menu"; // CSV読み込み（サーバー側）
+import { getMenu } from "@/lib/data/menu"; // CSV読み込み（サーバー側）
 
 export default async function Menu() {
   const items = await getMenu();

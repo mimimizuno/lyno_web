@@ -1,4 +1,4 @@
-import { getBeans } from "@/lib/beans";
+import { getBeans } from "@/lib/data/beans";
 
 export default async function Beans() {
   const beans = await getBeans();
