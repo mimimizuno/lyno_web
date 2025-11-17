@@ -45,7 +45,7 @@ export default function NewsSection({ items }: Props) {
             {items.map((n) => (
               <article
                 key={`${n.date}-${n.title}`}
-                className="border border-brand rounded-2xl p-4"
+                className="border border-brand rounded-2xl bg-white/5 p-4"
               >
                 <p className="text-xs text-white/50">{n.date}</p>
                 <h3 className="mt-1 text-sm font-medium">{n.title}</h3>

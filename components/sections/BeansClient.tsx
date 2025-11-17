@@ -1,4 +1,3 @@
-// components/sections/BeansClient.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -6,9 +5,7 @@ import { fadeIn } from "@/lib/motion";
 import { texts } from "@/lib/text";
 import type { Bean } from "@/lib/data/beans";
 
-type Props = {
-  items: Bean[];
-};
+type Props = { items: Bean[] };
 
 function formatDripPrice(v?: string): string {
   if (!v) return "";
@@ -26,22 +23,22 @@ export default function BeansClient({ items }: Props) {
   return (
     <section id="beans" className="section section-y">
       <div className="mx-auto max-w-5xl px-6">
-        {/* タイトル＋説明 */}
+        
+        {/* タイトル */}
         <motion.h2
           className="h2 mb-2"
           variants={fadeIn(0.1)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.8 }}
         >
           {t.title}
         </motion.h2>
+
         <p className="mb-8 p">{t.description}</p>
 
         {isEmpty ? (
-          <p className="p text-white/60">
-            現在ご紹介できる豆はありません。
-          </p>
+          <p className="p text-white/60">{t.empty}</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
             {items.map((b) => {
@@ -50,56 +47,80 @@ export default function BeansClient({ items }: Props) {
               return (
                 <article
                   key={b.id}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-5"
+                  className="rounded-3xl border border-brand bg-white/5 p-5"
                 >
                   {/* 名前 */}
-                  <h3 className="font-serif text-lg mb-1">{b.name}</h3>
+                  <h3 className="h3 text-lg mb-2">{b.name}</h3>
 
-                  {/* 産地／品種／プロセス／ロースト */}
-                  <p className="text-xs text-white/60">
-                    {b.origin}
-                    {b.variety && ` / ${b.variety}`}
-                    {b.process && ` / ${b.process}`}
-                    {b.roast && ` / ${b.roast}`}
-                  </p>
+                  {/* 基本情報（origin 等をラベル付きで分離） */}
+                  <div className="space-y-1 text-xs text-white/60">
+                    {b.origin && (
+                      <div>
+                        <span className="text-white/40">{t.origin}:</span>{" "}
+                        {b.origin}
+                      </div>
+                    )}
+
+                    {b.variety && (
+                      <div>
+                        <span className="text-white/40">{t.variety}:</span>{" "}
+                        {b.variety}
+                      </div>
+                    )}
+
+                    {b.process && (
+                      <div>
+                        <span className="text-white/40">{t.process}:</span>{" "}
+                        {b.process}
+                      </div>
+                    )}
+
+                    {b.roast && (
+                      <div>
+                        <span className="text-white/40">{t.roast}:</span>{" "}
+                        {b.roast}
+                      </div>
+                    )}
+
+                    {b.roaster && (
+                        <p className="mt-3 text-xs text-white/50">
+                        {t.roaster} {b.roaster}
+                        </p>
+                    )}
+                  </div>
 
                   {/* フレーバー */}
                   {b.flavor && (
-                    <p className="mt-2 text-xs text-white/60">{b.flavor}</p>
+                    <p className="mt-3 text-xs text-white/70">{b.flavor}</p>
                   )}
 
                   {/* ノート */}
                   {(b.notes_ja || b.notes_en) && (
-                    <p className="mt-3 text-sm text-white/80">
+                    <p className="mt-3 text-sm text-white/80 leading-relaxed">
                       {b.notes_ja || b.notes_en}
                     </p>
                   )}
 
-                  {/* ロースター */}
-                  {b.roaster && (
-                    <p className="mt-3 text-xs text-white/50">
-                      Roasted by {b.roaster}
-                    </p>
-                  )}
+
 
                   {/* 価格・在庫 */}
                   <div className="mt-4 space-y-1 text-xs text-white/70">
+                    {dripLabel && (
+                      <div>
+                        {t.drip}: {dripLabel}
+                      </div>
+                    )}
+
                     {b.price100 != null && (
                       <div>
-                        ¥{b.price100}
-                        {t.priceUnit100}
+                        {t.priceUnit100}: ¥{b.price100}
                       </div>
                     )}
 
                     {b.price40 != null && (
                       <div>
-                        ¥{b.price40}
-                        {t.priceUnit40}
+                        {t.priceUnit40}: ¥{b.price40}
                       </div>
-                    )}
-
-                    {dripLabel && (
-                      <div>For drip: {dripLabel}</div>
                     )}
 
                     {!b.in_stock && (

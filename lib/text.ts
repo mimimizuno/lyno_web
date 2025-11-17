@@ -44,10 +44,18 @@ export const texts = {
   
     beans: {
       title: "Beans",
-      description: "数種類の個性あふれる豆をセレクトしています。少量での購入も可能なので気軽にお試しください。",
-      priceUnit100: "/ 100g",
-      priceUnit40: "/ 40g",
+      description:
+        "数種類の個性あふれる豆をセレクトしています。少量での購入も可能なので気軽にお試しください。",
+      empty: "現在ご紹介できる豆はありません。",
       soldOut: "Sold out",
+      priceUnit100: "100g",
+      priceUnit40: "40g",
+      drip: "Pour Over",
+      origin: "Origin",
+      variety: "Variety",
+      process: "Process",
+      roast: "Roast level",
+      roaster: "Roasted by",
     },
     
     access: {
