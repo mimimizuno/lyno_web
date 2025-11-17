@@ -59,16 +59,14 @@ export const texts = {
     },
     
     access: {
-      heading: "アクセス",
-      intro:
-        "糀谷駅から徒歩2分。大きな交差点の目の前、黒い外観が目印です。",
-      fromStationTitle: "糀谷駅から",
-      fromStationBody:
-        "改札を出て商店街方面へ。2つ目の交差点を右に曲がると、左手側にLynoが見えてきます。",
-      infoTitle: "店舗情報",
-      addressLabel: "住所",
-      hoursLabel: "営業時間",
-      accessNote: "テイクアウト中心／店内数席ございます。",
+      title: "Access",
+      description:
+        "京急糀谷駅から徒歩2分。羽田空港から15分程度の位置にあります。",
+      address_ja: "〒144-0035 東京都大田区南蒲田3丁目12-10 山一ビル 101",
+      hours_label: "Open",
+      closed_label: "Closed",
+      hours_value: "13:00–20:00",
+      map_cta: "Google Mapで開く",
     },
   
     footer: {

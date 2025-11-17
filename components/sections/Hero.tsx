@@ -23,9 +23,8 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="relative z-10 w-full max-w-screen-xl mx-auto px-6 
-                   flex justify-end"
-        variants={fadeIn(0.1)}
+        className="relative z-10 w-full max-w-screen-xl mx-auto px-6 flex justify-end"
+        variants={fadeIn(0.2)}
         initial="hidden"
         animate="show"
         viewport={{ once: true, amount: 0.3 }}
