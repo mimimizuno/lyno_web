@@ -1,23 +1,34 @@
-// components/Footer.tsx
+import { Instagram } from "lucide-react";
+import { texts } from "@/lib/text";
+
 export default function Footer() {
+  const t = texts.footer;
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="mt-16 border-t border-white/10 bg-black/80">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
+    <footer className="mt-20 border-t border-white/10 bg-black/80">
+      <div className="
+        mx-auto max-w-5xl px-6 py-8
+        flex flex-col md:flex-row md:items-center md:justify-between
+        text-xs text-white/60 gap-4
+      ">
+        {/* 左：ブランド */}
         <div>
-          <div className="font-serif text-sm">
-            <span className="text-brand">Lyno</span>
-          </div>
-          <p>Tokyo, Ota-ku Kojiya / Specialty Coffee Stand</p>
+          <p className="mt-1">© {year} {t.brand}</p>
         </div>
-        <div className="flex items-center gap-4">
+
+        {/* 右：Instagram */}
+        <div className="flex items-center gap-6">
           <a
-            href="https://www.instagram.com/your_account"
+            href="https://www.instagram.com/lyno.cafe.tokyo/"
             target="_blank"
-            className="hover:text-white"
+            className="
+              flex items-center gap-2 text-white/60
+              hover:text-white transition-colors
+            "
           >
-            Instagram
+            <Instagram size={45} strokeWidth={1.5} />
           </a>
-          <span>© {new Date().getFullYear()} Lyno</span>
         </div>
       </div>
     </footer>
