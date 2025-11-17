@@ -13,9 +13,9 @@ export const texts = {
     },
   
     hero: {
-        tagline: "Light Your New Ordinary",
-        title: "LYNO",
-        subtitle: "コーヒーが灯す、日常のひととき",
+      tagline: "Light Your New Ordinary",
+      title: "LYNO",
+      subtitle: "コーヒーが灯す、日常のひととき",
     },
   
     about: {
@@ -25,27 +25,37 @@ export const texts = {
     },
 
     news: {
-        title: "News",
-        description: "営業時間の変更や限定メニューなどのお知らせ。",
-        more: "More on Instagram",
-        empty: "現在お知らせはありません。",
-      },
+      title: "News",
+      description: "営業時間の変更や限定メニューなどのお知らせ。",
+      more: "More on Instagram",
+      empty: "現在お知らせはありません。",
+    },
   
     menu: {
-        title: "Menu",
-        description: "テイクアウト中心で、日常使いしやすいメニューをご用意しています。ドリップは豆をお選びいただけます。シロップは人工甘味料不使用でサトウキビ由来のシロップを用いております。",
-        seasonal: "Seasonal",
-        coffee: "Coffee",
-        teaLatte: "Tea Latte",
-        others: "Others",
-        option: "Option",
-        ask: "Ask",
+      title: "Menu",
+      description: "テイクアウト中心で、日常使いしやすいメニューをご用意しています。ドリップは豆をお選びいただけます。シロップは人工甘味料不使用でサトウキビ由来のシロップを用いております。",
+      seasonal: "Seasonal",
+      coffee: "Coffee",
+      teaLatte: "Tea Latte",
+      others: "Others",
+      option: "Option",
+      ask: "Ask",
     },
   
     beans: {
-      heading: "豆の紹介",
-      subheading: "それぞれの豆の個性を、できるだけそのままのかたちで。",
-      empty: "現在準備中です。",
+      title: "Beans",
+      description:
+        "数種類の個性あふれる豆をセレクトしています。少量での購入も可能なので気軽にお試しください。",
+      empty: "現在ご紹介できる豆はありません。",
+      soldOut: "Sold out",
+      priceUnit100: "100g",
+      priceUnit40: "40g",
+      drip: "Pour Over",
+      origin: "Origin",
+      variety: "Variety",
+      process: "Process",
+      roast: "Roast level",
+      roaster: "Roasted by",
     },
     
     access: {

@@ -8,6 +8,7 @@
   --color-bg: #050505;
   --color-brand: #03402d;
   --color-accent: #d9d9d9;
+  --color-white: #f0f0f0;
 
   /* TYPOGRAPHY */
   --font-heading: var(--font-oswald), var(--font-noto-sans-jp),
