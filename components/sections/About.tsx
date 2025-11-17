@@ -1,28 +1,46 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { fadeIn } from "@/lib/motion";
+import { texts } from "@/lib/text";
+
 export default function About() {
+  const t = texts.about;
   return (
     <section id="about" className="section">
       <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 md:flex-row">
         <div className="md:w-1/2">
-          <h2 className="h2 mb-4">About Lyno</h2>
-          <p className="text-sm md:text-base text-white/70">
-            Lynoは、糀谷駅から徒歩2分の小さなスペシャルティコーヒースタンド。
-            日常のなかで、少しだけ呼吸が整うような一杯を届けたいという想いで、
-            一杯ずつ丁寧に抽出しています。
+          <motion.h2 
+            className="h2 mb-3"
+            variants={fadeIn(0.1)}
+            initial="hidden"
+            animate="show"
+            viewport={{ once: true, amount: 0.8 }}
+          >
+            {t.title}
+          </motion.h2>
+          <p className="p">
+            {t.p1}
           </p>
-          <p className="mt-4 text-sm md:text-base text-white/70">
-            仕事の合間や帰り道、家族との散歩の途中に。
-            チェーンとは少し違う、ほどよく上質で、でも気取らない一杯をどうぞ。
+          <p className="p">
+            {t.p2}
           </p>
         </div>
-        <div className="md:w-1/2">
+        <motion.div 
+          className="md:w-1/2"
+          variants={fadeIn(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="overflow-hidden rounded-3xl border border-white/10">
             <img
-              src="/images/gallery/Lyno_inside.jpg"
+              src="/images/shop/Lyno_inside.jpg"
               alt="Lyno interior"
               className="h-full w-full object-cover"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

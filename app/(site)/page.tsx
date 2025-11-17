@@ -7,16 +7,16 @@ import News from "@/components/sections/News";
 import Access from "@/components/sections/Access";
 import Footer from "@/components/Footer";
 
-export default function Page() {
+export default async function Page() {
   return (
     <>
       <Header />
       <main className="pt-16 space-y-24 md:space-y-32">
         <Hero />
         <About />
+        <News />
         <Menu />
         <Beans />
-        <News />
         <Access />
       </main>
       <Footer />

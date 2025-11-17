@@ -5,10 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: "#0B0B0B", // 背景
-        text: "#EAEAEA", // メインテキスト
-        brand: "#D80F1A", // アクセント（赤）
-        mute: "#141414", // 補助背景
+        white: "var(--color-white)",  
       },
       boxShadow: {
         soft: "0 10px 40px rgba(0,0,0,0.4)",
