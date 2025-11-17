@@ -1,48 +1,51 @@
-// components/sections/NewsSection.tsx
-const NEWS = [
-  {
-    date: "2025-11-10",
-    title: "ジンジャースパイスラテ、冬季限定でスタートしました。",
-    body: "サトウキビ由来のジンジャーシロップを使った、やさしい甘さのラテです。",
-  },
-  {
-    date: "2025-11-01",
-    title: "11月の営業日について",
-    body: "火曜定休。その他の臨時休業はInstagramにてお知らせします。",
-  },
-];
+"use client";
 
-export default function News() {
+import { texts } from "@/lib/text";
+import type { NewsItem } from "@/lib/data/news";
+
+type Props = {
+  items: NewsItem[];
+};
+
+export default function NewsSection({ items }: Props) {
+  const t = texts.news;
+  const isEmpty = items.length === 0;
+
   return (
     <section id="news" className="section border-y border-white/5 bg-black/60">
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
           <div>
-            <h2 className="h2 mb-1">News</h2>
-            <p className="text-sm text-white/60">
-              営業時間の変更や限定メニューなどのお知らせ。
-            </p>
+            <h2 className="h2 mb-3">{t.title}</h2>
+            <p className="p">{t.description}</p>
           </div>
+
           <a
-            href="https://www.instagram.com/your_account"
+            href="https://www.instagram.com/lyno.cafe.tokyo/"
             target="_blank"
-            className="text-xs text-white/60 underline underline-offset-4"
+            className="text-xs text-white/60 underline underline-offset-4 decoration-brand"
           >
-            More on Instagram
+            {t.more}
           </a>
         </div>
-
-        <div className="space-y-4">
-          {NEWS.map((n) => (
-            <article key={n.date} className="border border-white/10 rounded-2xl p-4">
-              <p className="text-xs text-white/50">{n.date}</p>
-              <h3 className="mt-1 text-sm font-medium">{n.title}</h3>
-              {n.body && (
-                <p className="mt-1 text-xs text-white/70">{n.body}</p>
-              )}
-            </article>
-          ))}
-        </div>
+        {isEmpty ? (
+          <p className="p">{t.empty}</p>
+        ) : (
+          <div className="space-y-4">
+            {items.map((n) => (
+              <article
+                key={`${n.date}-${n.title}`}
+                className="border border-brand rounded-2xl p-4"
+              >
+                <p className="text-xs text-white/50">{n.date}</p>
+                <h3 className="mt-1 text-sm font-medium">{n.title}</h3>
+                {n.body && (
+                  <p className="mt-1 text-xs text-white/70">{n.body}</p>
+                )}
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
