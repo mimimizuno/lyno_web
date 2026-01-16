@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
-import { texts } from "@/lib/text";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
-  const t = texts.hero;
+  const t = useTranslations("hero");
 
   return (
     <section
@@ -31,17 +31,17 @@ export default function Hero() {
       >
         <div className="text-right max-w-md">
           <p className="text-xs md:text-sm lg:text-lg tracking-[0.3em] text-white/70">
-            {t.tagline}
+            {t("tagline")}
           </p>
 
           <h1
             className="text-7xl md:text-8xl lg:text-9xl font-sans"
           >
-            {t.title}
+            {t("title")}
           </h1>
 
           <p className="mt-1 text-xs md:text-sm lg:text-lg text-white/70">
-            {t.subtitle}
+            {t("subtitle")}
           </p>
         </div>
       </motion.div>

@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import { pickByLocale } from "@/lib/i18nField";
 import type { Bean } from "@/lib/data/beans";
 
 type Props = { items: Bean[] };
@@ -19,6 +21,7 @@ function formatDripPrice(v?: string): string {
 export default function BeansClient({ items }: Props) {
   const t = useTranslations("beans");
   const isEmpty = items.length === 0;
+  const locale = useLocale();
 
   return (
     <section id="beans" className="section section-y">
@@ -43,6 +46,7 @@ export default function BeansClient({ items }: Props) {
           <div className="grid gap-6 md:grid-cols-2">
             {items.map((b) => {
               const dripLabel = formatDripPrice(b.priceDrip);
+              const notes = pickByLocale(locale, b.notes_ja, b.notes_en);
 
               return (
                 <article
@@ -95,9 +99,9 @@ export default function BeansClient({ items }: Props) {
                   )}
 
                   {/* ノート */}
-                  {(b.notes_ja || b.notes_en) && (
+                  {notes && (
                     <p className="mt-3 text-sm text-white/80 leading-relaxed">
-                      {b.notes_ja || b.notes_en}
+                      {notes}
                     </p>
                   )}
 
