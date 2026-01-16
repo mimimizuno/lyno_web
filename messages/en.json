@@ -60,7 +60,7 @@
     "access": {
       "title": "Access",
       "description": "A two-minute walk from Keikyu Kojiya Station, and about 15 minutes from Haneda Airport.",
-      "address_ja": "3-12-10 Minami-Kamata, Ota-ku, Tokyo 144-0035, Japan",
+      "address": "3-12-10 Minami-Kamata, Ota-ku, Tokyo 144-0035, Japan",
       "hours_label": "Open",
       "closed_label": "Closed",
       "hours_value": "13:00–20:00",

@@ -5,7 +5,7 @@ import { fadeIn } from "@/lib/motion";
 import { useTranslations } from "next-intl";
 
 export default function About() {
-  const t = useTranslations('about');
+  const t = useTranslations("about");
   return (
     <section id="about" className="section">
       <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 md:flex-row">

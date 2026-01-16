@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
-import { texts } from "@/lib/text";
+import { useTranslations } from "next-intl";
 import type { Bean } from "@/lib/data/beans";
 
 type Props = { items: Bean[] };
@@ -17,7 +17,7 @@ function formatDripPrice(v?: string): string {
 }
 
 export default function BeansClient({ items }: Props) {
-  const t = texts.beans;
+  const t = useTranslations("beans");
   const isEmpty = items.length === 0;
 
   return (
@@ -32,13 +32,13 @@ export default function BeansClient({ items }: Props) {
           whileInView="show"
           viewport={{ once: true, amount: 0.8 }}
         >
-          {t.title}
+          {t("title")}
         </motion.h2>
 
-        <p className="mb-8 p">{t.description}</p>
+        <p className="mb-8 p">{t("description")}</p>
 
         {isEmpty ? (
-          <p className="p text-white/60">{t.empty}</p>
+          <p className="p text-white/60">{t("empty")}</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
             {items.map((b) => {
@@ -56,35 +56,35 @@ export default function BeansClient({ items }: Props) {
                   <div className="space-y-1 text-xs text-white/60">
                     {b.origin && (
                       <div>
-                        <span className="text-white/40">{t.origin}:</span>{" "}
+                        <span className="text-white/40">{t("origin")}:</span>{" "}
                         {b.origin}
                       </div>
                     )}
 
                     {b.variety && (
                       <div>
-                        <span className="text-white/40">{t.variety}:</span>{" "}
+                        <span className="text-white/40">{t("variety")}:</span>{" "}
                         {b.variety}
                       </div>
                     )}
 
                     {b.process && (
                       <div>
-                        <span className="text-white/40">{t.process}:</span>{" "}
+                        <span className="text-white/40">{t("process")}:</span>{" "}
                         {b.process}
                       </div>
                     )}
 
                     {b.roast && (
                       <div>
-                        <span className="text-white/40">{t.roast}:</span>{" "}
+                        <span className="text-white/40">{t("roast")}:</span>{" "}
                         {b.roast}
                       </div>
                     )}
 
                     {b.roaster && (
                         <p className="mt-3 text-xs text-white/50">
-                        {t.roaster} {b.roaster}
+                        {t("roaster")} {b.roaster}
                         </p>
                     )}
                   </div>
@@ -107,24 +107,24 @@ export default function BeansClient({ items }: Props) {
                   <div className="mt-4 space-y-1 text-xs text-white/70">
                     {dripLabel && (
                       <div>
-                        {t.drip}: {dripLabel}
+                        {t("drip")}: {dripLabel}
                       </div>
                     )}
 
                     {b.price100 != null && (
                       <div>
-                        {t.priceUnit100}: ¥{b.price100}
+                        {t("priceUnit100")}: ¥{b.price100}
                       </div>
                     )}
 
                     {b.price40 != null && (
                       <div>
-                        {t.priceUnit40}: ¥{b.price40}
+                        {t("priceUnit40")}: ¥{b.price40}
                       </div>
                     )}
 
                     {!b.in_stock && (
-                      <div className="text-red-300">{t.soldOut}</div>
+                      <div className="text-red-300">{t("soldOut")}</div>
                     )}
                   </div>
                 </article>

@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
-import { texts } from "@/lib/text";
+import { useTranslations } from "next-intl";
 
 export default function Access() {
-  const t = texts.access;
+  const t = useTranslations("access");
 
   return (
     <section id="access" className="section">
@@ -19,17 +19,17 @@ export default function Access() {
             animate="show"
             viewport={{ once: true, amount: 0.8 }}
           >
-            {t.title}
+            {t("title")}
           </motion.h2>
 
-          <p className="p">{t.description}</p>
+          <p className="p">{t("description")}</p>
 
           <div className="mt-4 space-y-3 text-sm text-white/70">
-            <p>{t.address_ja}</p>
+            <p>{t("address")}</p>
 
             <p>
-              <span className="font-semibold">{t.hours_label}:</span>{" "}
-              {t.hours_value}
+              <span className="font-semibold">{t("hours_label")}:</span>{" "}
+              {t("hours_value")}
             </p>
 
             <a
@@ -41,7 +41,7 @@ export default function Access() {
                 hover:bg-brand hover:text-black transition
               "
             >
-              {t.map_cta}
+              {t("map_cta")}
             </a>
           </div>
         </div>
