@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { drawerMotion, overlayMotion } from "@/lib/motion";
+import LocaleSwitch from "@/components/LocaleSwitch";
 
 type MenuItem = { href: `#${string}`; label: string };
 
@@ -49,10 +50,14 @@ export default function Header() {
     <header className="header-shell">
       <div className="header-inner">
         <div className="header-container">
-          {/* Brand */}
-          <Link href="#hero" className="brand-root">
-            <span className="brand-text">{tCommon("brand")}</span>
-          </Link>
+          {/* Brand + Locale */}
+          <div className="flex items-center gap-4">
+            <Link href="#hero" className="brand-root">
+              <span className="brand-text">{tCommon("brand")}</span>
+            </Link>
+
+            <LocaleSwitch />
+          </div>
 
           {/* PC nav */}
           <nav className="nav-desktop">
