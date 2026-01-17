@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { texts } from "@/lib/text";
-import { drawerMotion, overlayMotion } from "@/lib/motion"; // ★ 追加
+import { useTranslations } from "next-intl";
+import { drawerMotion, overlayMotion } from "@/lib/motion";
+import LocaleSwitch from "@/components/LocaleSwitch";
 
-type MenuItem = { href: `#${string}`; label: keyof typeof texts.header };
+type MenuItem = { href: `#${string}`; label: string };
 
 const LINKS: MenuItem[] = [
   { href: "#about", label: "about" },
@@ -18,7 +19,9 @@ const LINKS: MenuItem[] = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const t = texts.header;
+
+  const tHeader = useTranslations("header");
+  const tCommon = useTranslations("common");
 
   // ドロワーオープン中はスクロールロック
   useEffect(() => {
@@ -47,30 +50,25 @@ export default function Header() {
     <header className="header-shell">
       <div className="header-inner">
         <div className="header-container">
-          {/* Brand */}
-          <Link href="#hero" className="brand-root">
-            {/* <div className="brand-logo-wrapper">
-              <Image
-                src="/images/ui/icon.png"
-                alt="Lyno Coffee"
-                width={56}
-                height={56}
-                className="brand-logo-image"
-              />
-            </div> */}
-            <span className="brand-text">{texts.common.brand}</span>
-          </Link>
+          {/* Brand + Locale */}
+          <div className="flex items-center gap-4">
+            <Link href="#hero" className="brand-root">
+              <span className="brand-text">{tCommon("brand")}</span>
+            </Link>
+
+            <LocaleSwitch />
+          </div>
 
           {/* PC nav */}
           <nav className="nav-desktop">
             {LINKS.map((item) => (
               <a key={item.href} href={item.href} className="nav-link">
-                {t[item.label]}
+                {tHeader(item.label)}
               </a>
             ))}
           </nav>
 
-          {/* SP: ハンバーガー（開く専用） */}
+          {/* SP: ハンバーガー */}
           <button
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -84,11 +82,11 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ドロワー（オーバーレイ＋パネル） */}
+      {/* ドロワー */}
       <AnimatePresence>
         {open && (
           <>
-            {/* オーバーレイ：全画面、タップで閉じる */}
+            {/* Overlay */}
             <motion.div
               aria-hidden
               className="header-overlay"
@@ -99,7 +97,7 @@ export default function Header() {
               onClick={close}
             />
 
-            {/* 右 2/3 ドロワー本体 */}
+            {/* Drawer */}
             <motion.aside
               id="header-drawer"
               role="dialog"
@@ -122,7 +120,6 @@ export default function Header() {
                 </motion.button>
               </div>
 
-              {/* メニューリンク */}
               <nav className="header-drawer-inner">
                 {LINKS.map((item) => (
                   <a
@@ -131,7 +128,7 @@ export default function Header() {
                     onClick={close}
                     className="header-drawer-link"
                   >
-                    {t[item.label]}
+                    {tHeader(item.label)}
                   </a>
                 ))}
               </nav>

@@ -3,16 +3,20 @@ import { fetchCsv } from "./fetchCsv";
 
 type RawNews = {
   date: string;
-  title: string;
-  body: string;
+  title_ja: string;
+  title_en: string;
+  body_ja: string;
+  body_en: string;
   visible?: string;
   order?: string;
 };
 
 export type NewsItem = {
   date: string;      // "2025-11-10" 形式のまま保持
-  title: string;
-  body: string;
+  title_ja: string;
+  title_en: string;
+  body_ja: string;
+  body_en: string;
   visible: boolean;
   order: number;     // 並び順（未設定なら大きめの数を入れておく）
 };
@@ -31,8 +35,10 @@ export async function getNews(): Promise<NewsItem[]> {
     .filter((n) => (n.visible || "").toLowerCase() === "true")
     .map((n, index) => ({
       date: n.date,
-      title: n.title,
-      body: n.body,
+      title_ja: n.title_ja,
+      title_en: n.title_en,
+      body_ja: n.body_ja,
+      body_en: n.body_en,
       visible: (n.visible || "").toLowerCase() === "true",
       // order が空なら index ベースでそこそこ安定する値にする
       order: n.order ? Number(n.order) : index + 1,
