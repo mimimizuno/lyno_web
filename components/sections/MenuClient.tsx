@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
-import { texts } from "@/lib/text";
+import { useLocale, useTranslations } from "next-intl";
+import { pickByLocale } from "@/lib/i18nField";
 import type { MenuItem } from "@/lib/data/menu";
 
 type Props = {
@@ -18,23 +19,27 @@ function formatPrice(raw: string, askLabel: string) {
   return v;
 }
 
-function Line({ item }: { item: MenuItem }) {
-  const hasDesc = item.desc_ja || item.desc_en;
-  const priceLabel = formatPrice(item.price, texts.menu.ask);
+function Line({
+  item,
+  locale,
+  askLabel,
+}: {
+  item: MenuItem;
+  locale: string;
+  askLabel: string;
+}) {
+  const name = pickByLocale(locale, item.name_ja, item.name_en);
+  const desc = pickByLocale(locale, item.desc_ja, item.desc_en);
+  const priceLabel = formatPrice(item.price, askLabel);
 
   return (
     <div className="flex items-baseline justify-between border-b border-white/10 py-2">
       <div>
-        <div className="font-serif">
-          {item.name_ja}
-          {item.name_en && (
-            <span className="ml-2 text-xs text-white/50">/ {item.name_en}</span>
-          )}
-        </div>
+        <div className="font-serif">{name}</div>
 
-        {hasDesc && (
+        {desc && (
           <p className="mt-1 text-xs text-white/60">
-            {item.desc_ja || item.desc_en}
+            {desc}
           </p>
         )}
       </div>
@@ -47,19 +52,17 @@ function Line({ item }: { item: MenuItem }) {
 }
 
 export default function MenuClient({ items }: Props) {
-  const t = texts.menu;
+  const locale = useLocale();
+  const t = useTranslations("menu");
 
+  // category はデータ側が英語固定前提でフィルタ（表示ラベルだけ翻訳）
   const seasonal = items.filter((i) => i.seasonal);
   const coffee = items.filter((i) => i.category === "Coffee" && !i.seasonal);
-  const teaLatte = items.filter(
-    (i) => i.category === "Tea Latte" && !i.seasonal,
-  );
-  const others = items.filter(
-    (i) => i.category === "Others" && !i.seasonal,
-  );
-  const option = items.filter(
-    (i) => i.category === "Option" && !i.seasonal,
-  );
+  const teaLatte = items.filter((i) => i.category === "Tea Latte" && !i.seasonal);
+  const others = items.filter((i) => i.category === "Others" && !i.seasonal);
+  const option = items.filter((i) => i.category === "Option" && !i.seasonal);
+
+  const askLabel = t("ask");
 
   return (
     <section id="menu" className="section section-y">
@@ -71,19 +74,19 @@ export default function MenuClient({ items }: Props) {
           whileInView="show"
           viewport={{ once: true, amount: 0.8 }}
         >
-          {t.title}
+          {t("title")}
         </motion.h2>
 
-        <p className="mb-8 p">{t.description}</p>
+        <p className="mb-8 p">{t("description")}</p>
 
         {/* Seasonal */}
         {seasonal.length > 0 && (
           <div className="mb-8">
             <h3 className="h3 font-sans tracking-[0.2em] text-brand mb-2">
-              {t.seasonal}
+              {t("seasonal")}
             </h3>
             {seasonal.map((item) => (
-              <Line key={item.id} item={item} />
+              <Line key={item.id} item={item} locale={locale} askLabel={askLabel} />
             ))}
           </div>
         )}
@@ -92,10 +95,10 @@ export default function MenuClient({ items }: Props) {
         {coffee.length > 0 && (
           <div className="mb-8">
             <h3 className="h3 font-sans tracking-[0.2em] text-brand mb-2">
-              {t.coffee}
+              {t("coffee")}
             </h3>
             {coffee.map((item) => (
-              <Line key={item.id} item={item} />
+              <Line key={item.id} item={item} locale={locale} askLabel={askLabel} />
             ))}
           </div>
         )}
@@ -104,10 +107,10 @@ export default function MenuClient({ items }: Props) {
         {teaLatte.length > 0 && (
           <div className="mb-8">
             <h3 className="h3 font-sans tracking-[0.2em] text-brand mb-2">
-              {t.teaLatte}
+              {t("teaLatte")}
             </h3>
             {teaLatte.map((item) => (
-              <Line key={item.id} item={item} />
+              <Line key={item.id} item={item} locale={locale} askLabel={askLabel} />
             ))}
           </div>
         )}
@@ -116,10 +119,10 @@ export default function MenuClient({ items }: Props) {
         {others.length > 0 && (
           <div className="mb-8">
             <h3 className="h3 font-sans tracking-[0.2em] text-brand mb-2">
-              {t.others}
+              {t("others")}
             </h3>
             {others.map((item) => (
-              <Line key={item.id} item={item} />
+              <Line key={item.id} item={item} locale={locale} askLabel={askLabel} />
             ))}
           </div>
         )}
@@ -128,10 +131,10 @@ export default function MenuClient({ items }: Props) {
         {option.length > 0 && (
           <div>
             <h3 className="h3 font-sans tracking-[0.2em] text-brand mb-2">
-              {t.option}
+              {t("option")}
             </h3>
             {option.map((item) => (
-              <Line key={item.id} item={item} />
+              <Line key={item.id} item={item} locale={locale} askLabel={askLabel} />
             ))}
           </div>
         )}

@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
-import { texts } from "@/lib/text";
+import { useTranslations } from "next-intl";
 
 export default function About() {
-  const t = texts.about;
+  const t = useTranslations("about");
   return (
     <section id="about" className="section">
       <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 md:flex-row">
@@ -17,13 +17,13 @@ export default function About() {
             animate="show"
             viewport={{ once: true, amount: 0.8 }}
           >
-            {t.title}
+            {t("title")}
           </motion.h2>
           <p className="p">
-            {t.p1}
+            {t("p1")}
           </p>
           <p className="p">
-            {t.p2}
+            {t("p2")}
           </p>
         </div>
         <motion.div 

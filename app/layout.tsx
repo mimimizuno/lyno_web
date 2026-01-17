@@ -34,7 +34,7 @@ const sawarabiMincho = Sawarabi_Mincho({
 export const metadata: Metadata = {
   metadataBase: new URL("https://lyno-web.vercel.app"),
   title: {
-    default: "Lyno Cafe| Specialty Coffee in Kojiya",
+    default: "Lyno Cafe | Specialty Coffee in Kojiya",
     template: "%s | Lyno Cafe",
   },
   description: "Specialty coffee stand near Kojiya Station.",
@@ -57,7 +57,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="ja"
+      suppressHydrationWarning
       className={[
         oswald.variable,
         libre.variable,
