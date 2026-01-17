@@ -57,7 +57,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="ja"
+      suppressHydrationWarning
       className={[
         oswald.variable,
         libre.variable,
